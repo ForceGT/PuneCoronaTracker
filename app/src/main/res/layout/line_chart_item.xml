@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView android:background="@color/global_bg"
+    android:id="@+id/lineChartContainer"
+    android:layout_width="match_parent"
+    android:layout_height="780dp"
+    android:layout_margin="5dp"
+    android:padding="8dp"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardBackgroundColor="@color/card_item_bg"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="8dp"
+    card_view:cardUseCompatPadding="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:text="@string/day_wise_total_progressive_cases"
+        android:fontFamily="@font/poppins_medium"
+        android:textStyle ="bold"
+        android:textSize="12sp"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:layout_gravity="center|top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_marginTop="24dp"
+        android:id="@+id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</androidx.cardview.widget.CardView>

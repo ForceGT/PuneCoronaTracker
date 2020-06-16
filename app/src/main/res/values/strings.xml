@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PuneCoronaTracker</string>
+    <string name="title_nav_sources">Sources</string>
+    <string name="title_nav_stats">Graphical Stats</string>
+    <string name="title_nav_home">Home</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="day_wise_total_progressive_cases">Day Wise Total Progressive Cases</string>
+    <string name="summary_of_total_deaths_active_recovered">Summary of Total Deaths,Active,Recovered</string>
+    <string name="age_and_gender_wise_plot">Age and Gender Wise Plot</string>
+    <string name="error_in_fetching_data">Error in Fetching Data</string>
+    <string name="nav_title_ward_detail">Ward Detail</string>
+</resources>

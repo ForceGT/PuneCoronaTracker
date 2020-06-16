@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#30475e</color>
+    <color name="colorPrimaryDark">#0c2233</color>
+    <color name="colorAccent">#0a91ab</color>
+    <color name="tint_nav">#5f85db</color>
+    <color name="nav_icon_tint">#ff6768</color>
+    <color name="bottom_nav_bg">#0c2233</color>
+    <color name="global_bg">#393e46</color>
+    <color name="card_item_bg">#30475e</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="linkColor">#0080FF</color>
+    <color name="graphCircleColor">#7ea3d5</color>
+<!--    home -> a64942-->
+</resources>

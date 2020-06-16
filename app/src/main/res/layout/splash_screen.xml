@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/logo"
+        android:src="@drawable/ic_coronavirus"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/pct_desc"
+        android:textColor="#fff"
+        android:text="Pune Corona Tracker"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_below="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="16sp"
+        android:id="@+id/developedByText"
+        android:textColor="#fff"
+        android:layout_marginBottom="40dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:text="Developed with \u2665"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:fontFamily="@font/poppins_extrabold"
+        android:id="@+id/devName"
+        android:textSize="20sp"
+        android:layout_marginTop="12dp"
+        android:layout_alignBottom="@+id/developedByText"
+        android:textColor="#fff"
+        android:layout_marginBottom="20dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:text="Gaurav Thakkar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
