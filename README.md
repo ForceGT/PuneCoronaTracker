@@ -17,15 +17,11 @@ pretty interested in the app, but as COVID-19 went away, obviously the app had t
 ## Screenshots
 
 <p style="text-align: center;">
-  <img src="readme_images/home.png" width="250" alt="Home Screen"/>
-  <img src="readme_images/home_scrolled.png" width="250" alt="Home Screen Scrolled"/>
-  <img src="readme_images/feeds_sheet.png" width="250" alt="Feeds Sheet"/>
-  <img src="readme_images/feeds_sheet_add_feed.png" width="250" alt="Add Feed"/>
-  <img src="readme_images/feeds_sheet_edit.png" width="250" alt="Edit Feeds"/>
-  <img src="readme_images/search.png" width="250" alt="Search Screen"/>
-  <img src="readme_images/bookmarks.png" width="250" alt="Bookmarks Screen"/>
-  <img src="readme_images/settings.png" width="250" alt="Settings Screen"/>
-  <img src="readme_images/reader_screen.png" width="250" alt="Reader Screen"/>
+  <img src="readme_images/PCT1.webp" width="250" alt="In App Updates"/>
+  <img src="readme_images/PCT2.webp" width="250" alt="Home Screen"/>
+  <img src="readme_images/PCT3.webp" width="250" alt="Graphical Data"/>
+  <img src="readme_images/PCT4.webp" width="250" alt="Ward Level Data"/>
+  <img src="readme_images/PCT5.webp" width="250" alt="Red Zones on The Map"/>
 </p>
 
 
