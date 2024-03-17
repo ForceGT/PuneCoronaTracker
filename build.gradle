@@ -1,14 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.72'
+    ext.kotlin_version = '1.9.0'
     repositories {
         google()
+        // Required by https://github.com/ismaeldivita/chip-navigation-bar
+        //noinspection JcenterRepositoryObsolete
         jcenter()
-        
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:8.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -19,11 +21,14 @@ buildscript {
 allprojects {
     repositories {
         google()
+        // Required by https://github.com/ismaeldivita/chip-navigation-bar
+        //noinspection JcenterRepositoryObsolete
         jcenter()
+        mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

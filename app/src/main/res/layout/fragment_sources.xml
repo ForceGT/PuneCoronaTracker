@@ -1,272 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<layout xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/global_bg"
-    tools:context=".SourcesFragment">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/sources"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="8dp"
-        card_view:cardBackgroundColor="@color/card_item_bg"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="8dp"
-        card_view:cardUseCompatPadding="true"
-        >
-
-
-
-        <LinearLayout
-            android:background="@color/card_item_bg"
-            android:layout_gravity="clip_vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_height="match_parent"
+            android:background="@color/global_bg"
+            tools:context=".SourcesFragment">
 
-            <TextView
-                android:fontFamily="@font/poppins_extrabold"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/sources"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="30dp"
-                android:text="Sources"
-                android:textColor="#f9d276"
-                android:textSize="32sp" />
-            <TextView
-                android:fontFamily="@font/poppins_bold"
-                android:textStyle="bold"
-                android:text="\u2022 Smart Pune City"
-                android:textColor="#fff"
-                android:gravity="left"
-                android:layout_margin="10dp"
-                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:padding="8dp"
+                card_view:cardBackgroundColor="@color/card_item_bg"
+                card_view:cardCornerRadius="10dp"
+                card_view:cardElevation="8dp"
+                card_view:cardUseCompatPadding="true">
+
+
+                <LinearLayout
+                    android:background="@color/card_item_bg"
+                    android:layout_gravity="clip_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:fontFamily="@font/poppins_extrabold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:text="Sources"
+                        android:textColor="#f9d276"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:fontFamily="@font/poppins_bold"
+                        android:textStyle="bold"
+                        android:text="\u2022 Smart Pune City"
+                        android:textColor="#fff"
+                        android:gravity="left"
+                        android:layout_margin="10dp"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <!--      TODO  Add Font-->
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:autoLink="all"
+                        android:gravity="left"
+                        android:linksClickable="true"
+                        android:textColorLink="@color/linkColor"
+                        android:text="https://www.facebook.com/smartpunecity"
+                        android:textColor="#fff"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="\u2022 PMC Pune"
+                        android:textStyle="bold"
+                        android:textColor="#fff"
+                        android:gravity="start"
+                        android:layout_margin="10dp"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:autoLink="all"
+                        android:gravity="start"
+                        android:linksClickable="true"
+                        android:textColorLink="@color/linkColor"
+                        android:text="https://www.facebook.com/PMCPune"
+                        android:textColor="#fff"
+                        android:textColorHighlight="#FFB6A911"
+                        android:textSize="14sp" />
+                    <!-- TODO Add font -->
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/sources"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <!--      TODO  Add Font-->
-            <TextView
-                android:fontFamily="@font/poppins_light"
+                android:layout_height="240dp"
+                android:layout_margin="5dp"
+                android:padding="8dp"
+                android:id="@+id/about_dev"
+                card_view:cardBackgroundColor="@color/card_item_bg"
+                card_view:cardCornerRadius="10dp"
+                card_view:cardElevation="8dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:background="@color/card_item_bg"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:fontFamily="@font/poppins_extrabold"
+                        android:gravity="start"
+                        android:layout_gravity="start"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="App Developed By"
+                        android:textColor="#f9d276"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Gaurav Thakkar"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textSize="26sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <!--      TODO  Add Font-->
+                    <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageButton
+                            android:id="@+id/imgGit"
+                            android:background="@color/transparent"
+                            android:layout_margin="12dp"
+                            android:layout_gravity="left"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_github"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+                        <ImageButton
+                            android:id="@+id/imgInsta"
+                            android:background="@color/transparent"
+                            android:layout_margin="12dp"
+                            android:layout_gravity="left"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_instagram"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+                        <ImageButton
+                            android:id="@+id/imgFb"
+                            android:background="@color/transparent"
+                            android:layout_margin="12dp"
+                            android:layout_gravity="left"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_facebook"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
+                    <!-- TODO Add font -->
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@id/about_dev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:autoLink="all"
-                android:gravity="left"
-                android:linksClickable="true"
-                android:textColorLink="@color/linkColor"
-                android:text="https://www.facebook.com/smartpunecity"
-                android:textColor="#fff"
-                android:textSize="14sp" />
+                android:layout_margin="5dp"
+                android:padding="8dp"
+                card_view:cardBackgroundColor="@color/card_item_bg"
+                card_view:cardCornerRadius="10dp"
+                card_view:cardElevation="8dp"
+                card_view:cardUseCompatPadding="true">
 
+                <LinearLayout
+                    android:background="@color/card_item_bg"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-            <TextView
-                android:fontFamily="@font/poppins_bold"
-                android:text="\u2022 PMC Pune"
-                android:textStyle="bold"
-                android:textColor="#fff"
-                android:gravity="start"
-                android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:fontFamily="@font/poppins_light"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:autoLink="all"
-                android:gravity="start"
-                android:linksClickable="true"
-                android:textColorLink="@color/linkColor"
-                android:text="https://www.facebook.com/PMCPune"
-                android:textColor="#fff"
-                android:textColorHighlight="#FFB6A911"
-                android:textSize="14sp" />
-            <!-- TODO Add font -->
-        </LinearLayout>
+                    <TextView
+                        android:fontFamily="@font/poppins_extrabold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:text="Thanks"
+                        android:textColor="#f9d276"
+                        android:textSize="32sp" />
 
+                    <TextView
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="\u2022 Omkar Markad"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textSize="24sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <!--      TODO  Add Font-->
+                    <TextView
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="\u2022 Rohan Newasekar"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textSize="24sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="\u2022 Pravin Patil"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textSize="24sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_below="@+id/sources"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_margin="5dp"
-        android:padding="8dp"
-        android:id="@+id/about_dev"
-        card_view:cardBackgroundColor="@color/card_item_bg"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="8dp"
-        card_view:cardUseCompatPadding="true"
-        >
+                    <TextView
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="\u2022 Mihir Gaikwad"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textSize="24sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:background="@color/card_item_bg"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:autoLink="all"
+                        android:gravity="center"
+                        android:linksClickable="true"
+                        android:textColorLink="@color/linkColor"
+                        android:text="https://www.punecoronatracker.in"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
 
-            <TextView
-                android:fontFamily="@font/poppins_extrabold"
-                android:gravity="start"
-                android:layout_gravity="start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="20dp"
-                android:text="App Developed By"
-                android:textColor="#f9d276"
-                android:textSize="32sp" />
+                    <!-- TODO Add font -->
+                </LinearLayout>
 
-            <TextView
-                android:fontFamily="@font/poppins_medium"
-                android:text="Gaurav Thakkar"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:textSize="26sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <!--      TODO  Add Font-->
-            <LinearLayout
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageButton
-                    android:id="@+id/imgGit"
-                    android:background="@color/transparent"
-                    android:layout_margin="12dp"
-                    android:layout_gravity="left"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_github"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-                <ImageButton
-                    android:id="@+id/imgInsta"
-                    android:background="@color/transparent"
-                    android:layout_margin="12dp"
-                    android:layout_gravity="left"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_instagram"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-                <ImageButton
-                    android:id="@+id/imgFb"
-                    android:background="@color/transparent"
-                    android:layout_margin="12dp"
-                    android:layout_gravity="left"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_facebook"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-            </LinearLayout>
-            <!-- TODO Add font -->
-        </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_below="@id/about_dev"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="8dp"
-        card_view:cardBackgroundColor="@color/card_item_bg"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="8dp"
-        card_view:cardUseCompatPadding="true"
-        >
-
-        <LinearLayout
-            android:background="@color/card_item_bg"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:fontFamily="@font/poppins_extrabold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="30dp"
-                android:text="Thanks"
-                android:textColor="#f9d276"
-                android:textSize="32sp" />
-
-            <TextView
-                android:fontFamily="@font/poppins_bold"
-                android:text="\u2022 Omkar Markad"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <!--      TODO  Add Font-->
-            <TextView
-                android:fontFamily="@font/poppins_bold"
-                android:text="\u2022 Rohan Newasekar"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:fontFamily="@font/poppins_bold"
-                android:text="\u2022 Pravin Patil"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:fontFamily="@font/poppins_bold"
-                android:text="\u2022 Mihir Gaikwad"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:fontFamily="@font/poppins_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:autoLink="all"
-                android:gravity="center"
-                android:linksClickable="true"
-                android:textColorLink="@color/linkColor"
-                android:text="https://www.punecoronatracker.in"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <!-- TODO Add font -->
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</RelativeLayout>
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+</layout>

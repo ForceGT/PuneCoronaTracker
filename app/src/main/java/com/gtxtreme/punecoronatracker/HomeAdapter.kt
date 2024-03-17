@@ -8,20 +8,29 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.OvershootInterpolator
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.gtxtreme.punecoronatracker.databinding.RvHomeItemBinding
 import com.robinhood.ticker.TickerUtils
 import com.robinhood.ticker.TickerView
-import kotlinx.android.synthetic.main.rv_home_item.view.*
 
 
-class HomeAdapter (private val userList: ArrayList<HomeData>) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>(){
+class HomeAdapter(private val userList: ArrayList<HomeData>) :
+    RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
+
+    private lateinit var binding: RvHomeItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val myView = LayoutInflater.from(parent.context).inflate(R.layout.rv_home_item,parent,false)
-        return MyViewHolder(myView)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.rv_home_item,
+            parent,
+            false
+        )
+        return MyViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return  userList.size
+        return userList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -31,8 +40,9 @@ class HomeAdapter (private val userList: ArrayList<HomeData>) : RecyclerView.Ada
         holder.subtitle.gravity = Gravity.CENTER_HORIZONTAL
         holder.subtitle.setPreferredScrollingDirection(TickerView.ScrollingDirection.DOWN)
         holder.subtitle.setCharacterLists(TickerUtils.provideNumberList());
-        holder.subtitle.setText(userList[position].count,true)
-        holder.subtitle.typeface= ResourcesCompat.getFont(holder.subtitle.context,R.font.poppins_light)
+        holder.subtitle.setText(userList[position].count, true)
+        holder.subtitle.typeface =
+            ResourcesCompat.getFont(holder.subtitle.context, R.font.poppins_light)
         setFadeAnimation(holder.itemView)
     }
 
@@ -42,9 +52,9 @@ class HomeAdapter (private val userList: ArrayList<HomeData>) : RecyclerView.Ada
         itemView.startAnimation(anim)
     }
 
-    class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val title: TextView = itemView.tvtitle
-        val subtitle: TickerView = itemView.tvsubtitle
+    class MyViewHolder(binding: RvHomeItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val title: TextView = binding.tvtitle
+        val subtitle: TickerView = binding.tvsubtitle
 
     }
 

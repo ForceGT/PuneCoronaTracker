@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-     >
+    <data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/wardDetailRV"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    </data>
 
-    <TextView
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:textSize="26sp"
-        android:fontFamily="@font/poppins_medium"
-        android:id="@+id/errorText"
-        android:textColor="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</RelativeLayout>
+    <RelativeLayout
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wardDetailRV"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:textSize="26sp"
+            android:fontFamily="@font/poppins_medium"
+            android:id="@+id/errorText"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</layout>

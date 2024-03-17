@@ -5,16 +5,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.gtxtreme.punecoronatracker.databinding.WardDetailRvItemBinding
 import com.robinhood.ticker.TickerUtils
 import com.robinhood.ticker.TickerView
-import kotlinx.android.synthetic.main.ward_detail_rv_item.view.*
 
-class WardAdapter(val data: List<WardData>):RecyclerView.Adapter<WardAdapter.WardDataViewHolder>() {
+class WardAdapter(val data: List<WardData>) :
+    RecyclerView.Adapter<WardAdapter.WardDataViewHolder>() {
+
+
+    private lateinit var binding: WardDetailRvItemBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WardDataViewHolder {
-        val myView =
-            LayoutInflater.from(parent.context).inflate(R.layout.ward_detail_rv_item, parent, false)
-        return WardDataViewHolder(myView)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.ward_detail_rv_item,
+            parent,
+            false
+        )
+        return WardDataViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -23,29 +33,33 @@ class WardAdapter(val data: List<WardData>):RecyclerView.Adapter<WardAdapter.War
 
 
     override fun onBindViewHolder(holder: WardAdapter.WardDataViewHolder, position: Int) {
-        holder.wardName.text = data[position].wardName
-        holder.posCount.setCharacterLists(TickerUtils.provideNumberList())
-        holder.posCount.animationDelay = 600
-        holder.posCount.setText(data[position].positiveCount,true)
-        holder.recoveredCount.setCharacterLists(TickerUtils.provideNumberList())
-        holder.recoveredCount.animationDelay = 600
-        holder.recoveredCount.setText(data[position].recoveredCount,true)
-        holder.deathCount.setCharacterLists(TickerUtils.provideNumberList())
-        holder.deathCount.animationDelay = 600
-        holder.deathCount.setText(data[position].deathCount,true)
-        holder.activeCount.setCharacterLists(TickerUtils.provideNumberList())
-        holder.activeCount.animationDelay = 600
-        holder.activeCount.setText(data[position].activeCount,true)
-        setFadeAnimation(holder.itemView)
+        holder.apply {
+            wardName.text = data[position].wardName
+            posCount.setCharacterLists(TickerUtils.provideNumberList())
+            posCount.animationDelay = 600
+            posCount.setText(data[position].positiveCount, true)
+            recoveredCount.setCharacterLists(TickerUtils.provideNumberList())
+            recoveredCount.animationDelay = 600
+            recoveredCount.setText(data[position].recoveredCount, true)
+            deathCount.setCharacterLists(TickerUtils.provideNumberList())
+            deathCount.animationDelay = 600
+            deathCount.setText(data[position].deathCount, true)
+            activeCount.setCharacterLists(TickerUtils.provideNumberList())
+            activeCount.animationDelay = 600
+            activeCount.setText(data[position].activeCount, true)
+            setFadeAnimation(itemView)
+        }
+
     }
 
 
-    inner class WardDataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val wardName: TextView = itemView.wardNameTxt
-        val posCount: TickerView = itemView.positiveCount
-        val activeCount: TickerView = itemView.activeCount
-        val recoveredCount : TickerView = itemView.recoveredCount
-        val deathCount: TickerView = itemView.deathCount
+    inner class WardDataViewHolder(binding: WardDetailRvItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val wardName: TextView = binding.wardNameTxt
+        val posCount: TickerView = binding.positiveCount
+        val activeCount: TickerView = binding.activeCount
+        val recoveredCount: TickerView = binding.recoveredCount
+        val deathCount: TickerView = binding.deathCount
     }
 
     private fun setFadeAnimation(itemView: View) {

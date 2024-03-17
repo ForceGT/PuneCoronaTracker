@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.gtxtreme.punecoronatracker.databinding.FragmentHomeBinding
 import java.lang.Exception
 
 /**
@@ -19,12 +20,25 @@ import java.lang.Exception
 class HomeFragment : Fragment() {
 
 
+    // Views
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var homeRecyclerView: RecyclerView
+    private lateinit var errorText: TextView
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_home,
+            container,
+            false
+        )
+        homeRecyclerView = binding.homeRv
+        errorText = binding.errorText
+        return binding.root
     }
 
 
@@ -68,24 +82,14 @@ class HomeFragment : Fragment() {
 
             }
 
-            override fun ageWiseData(map: Map<String, ArrayList<String>>) {
-                TODO("Not yet implemented")
-            }
+            override fun ageWiseData(map: Map<String, ArrayList<String>>) = Unit
 
-            override fun dailyWardWiseData(map: Map<String, ArrayList<String>>) {
-                TODO("Not yet implemented")
-            }
+            override fun dailyWardWiseData(map: Map<String, ArrayList<String>>) = Unit
 
-            override fun timeSeriesWardWise(map: Map<String, ArrayList<String>>) {
-                TODO("Not yet implemented")
-            }
-
-//            override fun allData(array: Array<Map<String, ArrayList<String>>>) {
-//                TODO("Not yet implemented")
-//            }
+            override fun timeSeriesWardWise(map: Map<String, ArrayList<String>>) = Unit
 
             override fun onFailure(e: Exception) {
-                home_rv.visibility = View.GONE
+                homeRecyclerView.visibility = View.GONE
                 homeProgress.visibility = View.GONE
                 errorText.visibility = View.VISIBLE
                 errorText.text = e.message
@@ -95,7 +99,6 @@ class HomeFragment : Fragment() {
         }
 
         ApiFetcher(dataHandlerInstance, ApiFetcher.TIMESERIES_CASE_COUNTS).execute()
-
 
     }
 

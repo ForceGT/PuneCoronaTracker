@@ -16,7 +16,7 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
         "https://raw.githubusercontent.com/omkarmarkad/COVID19-Pune/master/age-wise.csv"
     )
 
-    companion object{
+    companion object {
         val TIMESERIES_CASE_COUNTS = 0
         val TIMSERIES_WARD_WISE = 1
         val WARD_DAILY = 2
@@ -36,36 +36,36 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
         mType = type
     }
 
-    var date = ArrayList<String>()
-    var tPos = ArrayList<String>()
-    var newPos = ArrayList<String>()
-    var tDeaths = ArrayList<String>()
-    var newDeaths = ArrayList<String>()
-    var tRecovered = ArrayList<String>()
-    var newRecovered = ArrayList<String>()
-    var tActive = ArrayList<String>()
-    var tCritical = ArrayList<String>()
-    var lastUpdatedAt = ArrayList<String>()
-    var AundhBaner = ArrayList<String>()
-    var KothrudBawdhan = ArrayList<String>()
-    var SinhagadRoad = ArrayList<String>()
-    var WarjeKVn = ArrayList<String>()
-    var ShivajiGhole = ArrayList<String>()
-    var KasbaVish = ArrayList<String>()
-    var DhankaSaha = ArrayList<String>()
-    var BhawaniP = ArrayList<String>()
-    var Bibwewadi = ArrayList<String>()
-    var DPRoad = ArrayList<String>()
-    var YWKLDH = ArrayList<String>()
-    var NagarWadg = ArrayList<String>()
-    var WanawRamt = ArrayList<String>()
-    var KondhYew = ArrayList<String>()
-    var HadapMundhwa = ArrayList<String>()
-    var OutPMC = ArrayList<String>()
-    var ward = ArrayList<String>()
-    var age = ArrayList<String>()
-    var male = ArrayList<String>()
-    var female = ArrayList<String>()
+    private var date = ArrayList<String>()
+    private var tPos = ArrayList<String>()
+    private var newPos = ArrayList<String>()
+    private var tDeaths = ArrayList<String>()
+    private var newDeaths = ArrayList<String>()
+    private var tRecovered = ArrayList<String>()
+    private var newRecovered = ArrayList<String>()
+    private var tActive = ArrayList<String>()
+    private var tCritical = ArrayList<String>()
+    private var lastUpdatedAt = ArrayList<String>()
+    private var AundhBaner = ArrayList<String>()
+    private var KothrudBawdhan = ArrayList<String>()
+    private var SinhagadRoad = ArrayList<String>()
+    private var WarjeKVn = ArrayList<String>()
+    private var ShivajiGhole = ArrayList<String>()
+    private var KasbaVish = ArrayList<String>()
+    private var DhankaSaha = ArrayList<String>()
+    private var BhawaniP = ArrayList<String>()
+    private var Bibwewadi = ArrayList<String>()
+    private var DPRoad = ArrayList<String>()
+    private var YWKLDH = ArrayList<String>()
+    private var NagarWadg = ArrayList<String>()
+    private var WanawRamt = ArrayList<String>()
+    private var KondhYew = ArrayList<String>()
+    private var HadapMundhwa = ArrayList<String>()
+    private var OutPMC = ArrayList<String>()
+    private var ward = ArrayList<String>()
+    private var age = ArrayList<String>()
+    private var male = ArrayList<String>()
+    private var female = ArrayList<String>()
 
     override fun doInBackground(vararg params: Void): Void? {
 
@@ -73,7 +73,11 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
             when (mType) {
                 TIMESERIES_CASE_COUNTS -> {
                     val url = URL(urlArray[TIMESERIES_CASE_COUNTS])
-                    val parser = CSVParser.parse(url, Charset.defaultCharset(), CSVFormat.DEFAULT)
+                    val parser = CSVParser.parse(
+                        url,
+                        Charset.defaultCharset(),
+                        CSVFormat.DEFAULT
+                    )
                     parser.forEach { csvRecord ->
                         date.add(csvRecord[0])
                         tPos.add(csvRecord[1])
@@ -100,9 +104,14 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
                         "Last Update" to lastUpdatedAt
                     )
                 }
+
                 TIMSERIES_WARD_WISE -> {
                     val url = URL(urlArray[TIMSERIES_WARD_WISE])
-                    val parser = CSVParser.parse(url, Charset.defaultCharset(), CSVFormat.DEFAULT)
+                    val parser = CSVParser.parse(
+                        url,
+                        Charset.defaultCharset(),
+                        CSVFormat.DEFAULT
+                    )
                     parser.forEach { csvRecord ->
                         date.add(csvRecord[0])
                         AundhBaner.add(csvRecord[1])
@@ -143,9 +152,14 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
                         "Outside PMC" to OutPMC
                     )
                 }
-                WARD_DAILY-> {
+
+                WARD_DAILY -> {
                     val url = URL(urlArray[WARD_DAILY])
-                    val parser = CSVParser.parse(url, Charset.defaultCharset(), CSVFormat.DEFAULT)
+                    val parser = CSVParser.parse(
+                        url,
+                        Charset.defaultCharset(),
+                        CSVFormat.DEFAULT
+                    )
                     parser.forEach { csvRecord ->
                         ward.add(csvRecord[2])
                         tPos.add(csvRecord[3])
@@ -165,9 +179,14 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
                     )
 
                 }
+
                 AGE_WISE -> {
                     val url = URL(urlArray[AGE_WISE])
-                    val parser = CSVParser.parse(url, Charset.defaultCharset(), CSVFormat.DEFAULT)
+                    val parser = CSVParser.parse(
+                        url,
+                        Charset.defaultCharset(),
+                        CSVFormat.DEFAULT
+                    )
                     parser.forEach { csvRecord ->
                         age.add(csvRecord[0])
                         male.add(csvRecord[1])
@@ -181,54 +200,7 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
                         "Female" to female,
                         "Deaths" to tDeaths
                     )
-
-
                 }
-
-//                else->{
-//                    arrayOfAll = arrayOf(mapOf(
-//                        "Date" to date,
-//                        "Total Positive" to tPos,
-//                        "New Positive" to newPos,
-//                        "Total Deaths" to tDeaths,
-//                        "New Deaths" to newDeaths,
-//                        "Total Recovered" to tRecovered,
-//                        "New Recovered" to newRecovered,
-//                        "Total Active" to tActive,
-//                        "Total Critical" to tCritical,
-//                        "Last Update" to lastUpdatedAt
-//                    ),mapOf(
-//                        "Date" to date,
-//                        "Aundh - Baner" to AundhBaner,
-//                        "Kothrud - Bawdhan" to KothrudBawdhan,
-//                        "Sinhagad Road" to SinhagadRoad,
-//                        "Warje - Karvenagar" to WarjeKVn,
-//                        "Shivajinagar - Ghole Road" to ShivajiGhole,
-//                        "Kasba - Vishrambaugwada" to KasbaVish,
-//                        "Dhankawadi - Sahakarnagar" to DhankaSaha,
-//                        "Bhawani Peth" to BhawaniP,
-//                        "Bibwewadi" to Bibwewadi,
-//                        "Dhole Patil Road" to DPRoad,
-//                        "Yerwada - Kalas - Dhanori" to YWKLDH,
-//                        "Nagar Road - Vadgaonsheri" to NagarWadg,
-//                        "Wanawadi - Ramtekadi" to WanawRamt,
-//                        "Kondhwa - Yewalewadi" to KondhYew,
-//                        "Hadapsar - Mundhwa" to HadapMundhwa,
-//                        "Outside PMC" to OutPMC
-//                    ),mapOf(
-//                        "Ward" to ward,
-//                        "Total Cases" to tPos,
-//                        "New Cases" to newPos,
-//                        "Total Deaths" to tDeaths,
-//                        "Total Recovered" to tRecovered,
-//                        "Total Active" to tActive
-//                    ),mapOf(
-//                        "Age" to age,
-//                        "Male" to male,
-//                        "Female" to female,
-//                        "Deaths" to tDeaths
-//                    ))
-//                }
             }
 
 
@@ -241,15 +213,18 @@ class ApiFetcher : AsyncTask<Void, Void, Void> {
     override fun onPostExecute(result: Void?) {
         if (mDataEventHandler != null) {
             if (mException == null) {
-                when(mType) {
-                    TIMESERIES_CASE_COUNTS -> finalMap?.let { mDataEventHandler!!.timeSeriesCaseCounts(it) }
+                when (mType) {
+                    TIMESERIES_CASE_COUNTS -> finalMap?.let {
+                        mDataEventHandler!!.timeSeriesCaseCounts(
+                            it
+                        )
+                    }
+
                     TIMSERIES_WARD_WISE -> finalMap?.let { mDataEventHandler!!.timeSeriesWardWise(it) }
                     WARD_DAILY -> finalMap?.let { mDataEventHandler!!.dailyWardWiseData(it) }
                     AGE_WISE -> finalMap?.let { mDataEventHandler!!.ageWiseData(it) }
-//                    else -> arrayOfAll?.let { mDataEventHandler!!.allData(it) }
                 }
-            }
-            else{
+            } else {
                 mDataEventHandler!!.onFailure(mException!!)
             }
         }

@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="240dp"
-    android:layout_margin="5dp"
-    android:padding="8dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    card_view:cardBackgroundColor="@color/card_item_bg"
-    card_view:cardCornerRadius="10dp"
-    card_view:cardElevation="8dp"
-    card_view:cardUseCompatPadding="true"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_margin="5dp"
+        android:padding="8dp"
+        card_view:cardBackgroundColor="@color/card_item_bg"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="8dp"
+        card_view:cardUseCompatPadding="true">
 
         <LinearLayout
             android:background="@color/card_item_bg"
@@ -42,4 +46,5 @@
             <!-- TODO Add font -->
         </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</layout>

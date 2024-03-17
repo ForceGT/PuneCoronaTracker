@@ -9,6 +9,5 @@ interface APIDataEventHandler {
     fun ageWiseData(map: Map<String,ArrayList<String>>)
     fun dailyWardWiseData(map: Map<String,ArrayList<String>>)
     fun timeSeriesWardWise(map: Map<String,ArrayList<String>>)
-//    fun allData(array:Array<Map<String,ArrayList<String>>>)
     fun onFailure(e:Exception)
 }

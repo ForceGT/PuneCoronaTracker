@@ -4,49 +4,65 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.data.*
 import com.gtxtreme.punecoronatracker.ApiFetcher.Companion.AGE_WISE
 import com.gtxtreme.punecoronatracker.ApiFetcher.Companion.TIMESERIES_CASE_COUNTS
 import com.gtxtreme.punecoronatracker.ApiFetcher.Companion.TIMSERIES_WARD_WISE
 import com.gtxtreme.punecoronatracker.ApiFetcher.Companion.WARD_DAILY
-import kotlinx.android.synthetic.main.fragment_graphical_stats.*
-import java.lang.NullPointerException
-import kotlin.Exception
+import com.gtxtreme.punecoronatracker.databinding.FragmentGraphicalStatsBinding
 
 
 class GraphicalStatsFragment : Fragment() {
 
     private val graphItemList = ArrayList<Any>()
     private var graphAdapter: GraphAdapter? = GraphAdapter(graphItemList)
-    private var lastUpdatedate:String? = null
-    private var exceptionMessage:String? = null
+    private var lastUpdateDate: String? = null
+    private var exceptionMessage: String? = null
+
+    // Views
+    private lateinit var binding: FragmentGraphicalStatsBinding
+    private lateinit var graphRecyclerView: RecyclerView
+    private lateinit var graphProgressBar: ProgressBar
+    private lateinit var errorText: TextView
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         getSummary()
         getDayWiseSeries()
         getAgeWiseBar()
         getDailyWardWiseBar()
-//        graphAdapter?.notifyDataSetChanged()
-        return inflater.inflate(R.layout.fragment_graphical_stats, container, false)
+        binding = DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_graphical_stats,
+                container,
+                false,
+            )
 
+        graphRecyclerView = binding.graphRecyclerView
+        graphProgressBar = binding.graphProgressBar
+        errorText = binding.errorText
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-        if (graphAdapter!= null){
+        if (graphAdapter != null) {
             graphRecyclerView.visibility = View.VISIBLE
             graphProgressBar.visibility = View.GONE
         }
-        if (exceptionMessage != null)
-        {
+        if (exceptionMessage != null) {
             graphProgressBar.visibility = View.GONE
             graphRecyclerView.visibility = View.GONE
             errorText.visibility = View.VISIBLE
@@ -59,7 +75,7 @@ class GraphicalStatsFragment : Fragment() {
     }
 
     private fun getSummary() {
-        var pieEntryList: List<PieEntry>? = null
+        var pieEntryList: List<PieEntry>?
         val dataHandlerInstance1 = object : APIDataEventHandler {
             override fun timeSeriesCaseCounts(map: Map<String, ArrayList<String>>) {
 
@@ -88,7 +104,7 @@ class GraphicalStatsFragment : Fragment() {
             }
 
             override fun onFailure(e: Exception) {
-                exceptionMessage+=e.message
+                exceptionMessage += e.message
             }
         }
 
@@ -96,7 +112,7 @@ class GraphicalStatsFragment : Fragment() {
 
     }
 
-    fun getAgeWiseBar() {
+    private fun getAgeWiseBar() {
         val dataHandlerInstance2 = object : APIDataEventHandler {
 
 
@@ -110,14 +126,14 @@ class GraphicalStatsFragment : Fragment() {
 //                val female = map["Female"]
 //                val deaths = map["Deaths"]
 
-                val labelArray = arrayOf("Male","Female","Deaths")
+                val labelArray = arrayOf("Male", "Female", "Deaths")
                 val dataSetList: ArrayList<BarDataSet> = ArrayList()
 
-                labelArray.forEach { label->
+                labelArray.forEach { label ->
                     val entryList = arrayListOf<BarEntry>()
-                    map[label]?.forEachIndexed(){index,value->
-                       if (index!=0)
-                           entryList.add(BarEntry((index - 1).toFloat(), value.toFloat()))
+                    map[label]?.forEachIndexed { index, value ->
+                        if (index != 0)
+                            entryList.add(BarEntry((index - 1).toFloat(), value.toFloat()))
                     }
                     dataSetList.add(BarDataSet(entryList, label))
                 }
@@ -136,7 +152,7 @@ class GraphicalStatsFragment : Fragment() {
             }
 
             override fun onFailure(e: Exception) {
-                exceptionMessage+=e.message
+                exceptionMessage += e.message
             }
         }
         ApiFetcher(dataHandlerInstance2, AGE_WISE).execute()
@@ -144,7 +160,7 @@ class GraphicalStatsFragment : Fragment() {
 
     }
 
-    fun getDailyWardWiseBar() {
+    private fun getDailyWardWiseBar() {
         val dataHandlerInstance3 = object : APIDataEventHandler {
             override fun timeSeriesCaseCounts(map: Map<String, ArrayList<String>>) {
                 TODO("Not yet implemented")
@@ -161,16 +177,16 @@ class GraphicalStatsFragment : Fragment() {
 //                val tDeaths = map["Total Deaths"]
 //                val tActive = map["Total Active"]
                 val dataSetList: ArrayList<BarDataSet> = ArrayList()
-                val labelArray = arrayOf("Total Cases","Total Deaths","Total Active")
-                labelArray.forEach { label->
+                val labelArray = arrayOf("Total Cases", "Total Deaths", "Total Active")
+                labelArray.forEach { label ->
                     val entryList = arrayListOf<BarEntry>()
-                    map[label]?.forEachIndexed(){index,value->
-                        if (index!=0)
+                    map[label]?.forEachIndexed { index, value ->
+                        if (index != 0)
                             entryList.add(BarEntry((index - 1).toFloat(), value.toFloat()))
                     }
                     dataSetList.add(BarDataSet(entryList, label))
                 }
-                graphItemList.add(WardHorizontalBar(dataSetList, ward!!,lastUpdatedate!!))
+                graphItemList.add(WardHorizontalBar(dataSetList, ward!!, lastUpdateDate!!))
                 graphAdapter?.notifyDataSetChanged()
             }
 
@@ -179,7 +195,7 @@ class GraphicalStatsFragment : Fragment() {
             }
 
             override fun onFailure(e: Exception) {
-                exceptionMessage+=e.message
+                exceptionMessage += e.message
             }
         }
         ApiFetcher(dataHandlerInstance3, WARD_DAILY).execute()
@@ -187,7 +203,7 @@ class GraphicalStatsFragment : Fragment() {
     }
 
 
-    fun getDayWiseSeries() {
+    private fun getDayWiseSeries() {
         val dataHandlerInstance4 = object : APIDataEventHandler {
             override fun timeSeriesCaseCounts(map: Map<String, ArrayList<String>>) {
                 TODO("Not yet implemented")
@@ -204,16 +220,15 @@ class GraphicalStatsFragment : Fragment() {
             override fun timeSeriesWardWise(map: Map<String, ArrayList<String>>) {
 
 
-               val date = map["Date"]
-                lastUpdatedate = date?.lastOrNull()
+                val date = map["Date"]
+                lastUpdateDate = date?.lastOrNull()
                 val labelArray = arrayOf(
                     "Aundh - Baner",
                     "Kothrud - Bawdhan",
                     "Sinhagad Road",
                     "Warje - Karvenagar",
                     "Shivajinagar - Ghole Road",
-                    "Kasba - Vishrambaugwada"
-                    ,
+                    "Kasba - Vishrambaugwada",
                     "Dhankawadi - Sahakarnagar",
                     "Bhawani Peth",
                     "Bibwewadi",
@@ -241,7 +256,7 @@ class GraphicalStatsFragment : Fragment() {
             }
 
             override fun onFailure(e: Exception) {
-                exceptionMessage+=e.message
+                exceptionMessage += e.message
             }
         }
 
