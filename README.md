@@ -30,6 +30,7 @@ pretty interested in the app, but as COVID-19 went away, obviously the app had t
 - Access ward level data, cumulatively
 - Options to access the data graphically, and daily updation
 - Map with red zones ( Deprecated now, due to lack of data )
+- In app updates, with a custom [json](https://github.com/ForceGT/pct_api/blob/master/update_info.json) deployed to netlify 
 
 ## For the devs
 
