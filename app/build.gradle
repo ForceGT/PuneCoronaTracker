@@ -9,8 +9,8 @@ android {
         applicationId "com.gtxtreme.pct"
         minSdkVersion 23
         targetSdkVersion 35
-        versionCode 12
-        versionName "7.5"
+        versionCode 13
+        versionName "7.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
