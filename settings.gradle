@@ -1,2 +1,4 @@
 rootProject.name='PuneCoronaTracker'
 include ':app'
+include ':chip_navigation'
+enableFeaturePreview('TYPESAFE_PROJECT_ACCESSORS')
