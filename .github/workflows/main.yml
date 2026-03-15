@@ -1,22 +1,12 @@
 name: Deploy Android App to Play Store
 
-on:
-  workflow_dispatch:
-    inputs:
-      debug_upload:
-        description: Debug upload for detailed logs
-        type: choice
-        default: 'false'
-        options:
-          - 'true'
-          - 'false'
+on: workflow_dispatch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
       SUPPRESS_GCLOUD_PROMPT: '1'
-      ACTIONS_STEP_DEBUG: ${{ inputs.debug_upload }}
 
     steps:
       - name: Checkout repository
@@ -61,25 +51,6 @@ jobs:
 
       - name: Build App Bundle
         run: ./gradlew bundleRelease
-
-      - name: Validate Play Store secret
-        env:
-          SA_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
-        run: |
-          if [ -z "$SA_JSON" ]; then
-            echo "::error::GOOGLE_PLAY_SERVICE_ACCOUNT secret is not set."
-            exit 1
-          fi
-          printf '%s' "$SA_JSON" > sa.json
-          if ! python3 -c "import json; json.load(open('sa.json'))"; then
-            echo "::error::GOOGLE_PLAY_SERVICE_ACCOUNT is not valid JSON. Paste the full key as one line (no newlines)."
-            exit 1
-          fi
-          if [ "$(wc -l < sa.json)" -gt 1 ]; then
-            echo "::warning::Secret contains newlines. Store it as a single-line JSON string to avoid 'Unknown error' (Settings → Secrets → edit and minify)."
-          fi
-          python3 -c "import json; d=json.load(open('sa.json')); print('Service account:', d.get('client_email','?'))"
-          rm -f sa.json
 
       - name: Upload to Play Store
         uses: r0adkll/upload-google-play@v1
