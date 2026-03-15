@@ -1,5 +1,10 @@
-# Deploy Android App to Play Store
-
+# Deploy Android App to Play Store (personal project)
+#
+# If you see "Unknown error occurred" on Upload to Play Store (often intermittent on Google's side):
+# - Re-run the job; the workflow will retry the upload step automatically (up to 5 times).
+# - Store GOOGLE_PLAY_SERVICE_ACCOUNT as a single-line JSON string (no literal newlines) — this fixes many failures.
+# - In Play Console: Users and permissions → add the service account email with "Release to production" (or your track).
+# - Ensure the app exists and the first release was done manually; then API uploads work.
 name: Deploy Android App to Play Store
 
 on:
@@ -65,7 +70,7 @@ jobs:
           rm -f sa.json
 
       - name: Upload to Play Store
-        uses: Wandalen/wretry.action@v1.6.16
+        uses: Wandalen/wretry.action@v3.8.0
         with:
           action: r0adkll/upload-google-play@v1
           attempt_limit: 5
