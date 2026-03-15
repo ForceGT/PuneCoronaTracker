@@ -1,10 +1,3 @@
-# Deploy Android App to Play Store (personal project)
-#
-# If you see "Unknown error occurred" on Upload to Play Store (often intermittent on Google's side):
-# - Re-run the job; the workflow will retry the upload step automatically (up to 5 times).
-# - Store GOOGLE_PLAY_SERVICE_ACCOUNT as a single-line JSON string (no literal newlines) — this fixes many failures.
-# - In Play Console: Users and permissions → add the service account email with "Release to production" (or your track).
-# - Ensure the app exists and the first release was done manually; then API uploads work.
 name: Deploy Android App to Play Store
 
 on:
@@ -47,6 +40,25 @@ jobs:
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v3
 
+      - name: Set up signing
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -z "$ANDROID_KEYSTORE_BASE64" ]; then
+            echo "::error::ANDROID_KEYSTORE_BASE64 secret is not set."
+            exit 1
+          fi
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > app/release-keystore.jks
+          cat > app/keystore.properties << EOF
+          storeFile=release-keystore.jks
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          keyPassword=$ANDROID_KEY_PASSWORD
+          EOF
+
       - name: Build App Bundle
         run: ./gradlew bundleRelease
 
@@ -70,13 +82,11 @@ jobs:
           rm -f sa.json
 
       - name: Upload to Play Store
-        uses: Wandalen/wretry.action@v3.8.0
+        uses: r0adkll/upload-google-play@v1
         with:
-          action: r0adkll/upload-google-play@v1
-          attempt_limit: 5
-          attempt_delay: 10000
-          with: |
-            serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
-            packageName: com.gtxtreme.pct
-            releaseFiles: app/build/outputs/bundle/release/app-release.aab
-            track: production
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
+          packageName: com.gtxtreme.pct
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          track: production
+        env:
+          SUPPRESS_GCLOUD_PROMPT: '1'
