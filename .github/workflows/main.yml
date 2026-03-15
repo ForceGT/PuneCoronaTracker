@@ -1,6 +1,15 @@
 name: Deploy Android App to Play Store
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      debug_upload:
+        description: Debug upload for detailed logs
+        type: choice
+        default: 'false'
+        options:
+          - 'true'
+          - 'false'
 
 jobs:
   build-and-deploy:
@@ -38,6 +47,6 @@ jobs:
           packageName: com.gtxtreme.pct
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
-          whatsNewDirectory: ./whatsnew
         env:
           SUPPRESS_GCLOUD_PROMPT: '1'
+          ACTIONS_STEP_DEBUG: ${{ inputs.debug_upload }}
